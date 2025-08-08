@@ -1,0 +1,79 @@
+How Big Systems Use Multiple Design Patterns – Notes
+====================================================
+
+Real systems are built like LEGO — using small, reusable pieces (patterns):
+Each pattern solves one kind of problem. In real projects, multiple problems occur together — so you use multiple patterns in combination.
+
+----------------------------------------------------------------------
+Patterns Are Tools — Use Based on Problem Type
+
+| Problem You Face                             | Pattern You Might Use                |
+|---------------------------------------------|--------------------------------------|
+| You need to create objects flexibly         | Factory, Builder, Singleton          |
+| You need to change behavior at runtime      | Strategy, State, Command             |
+| You need to extend without modifying        | Decorator, Observer                  |
+| You want only one shared instance           | Singleton                            |
+| You want to delegate responsibility         | Chain of Responsibility              |
+| You need to convert interfaces              | Adapter                              |
+
+----------------------------------------------------------------------
+Example: Notification System in a Real App
+
+Say you’re designing a Notification Engine for a platform (email, SMS, mobile).
+You might use:
+
+| Purpose                           | Design Pattern            | Why                                  |
+|----------------------------------|---------------------------|--------------------------------------|
+| Choose which notification to send| Factory                   | Create the right object              |
+| Send notification using different strategies | Strategy         | Inject senders (Twilio, Firebase)    |
+| Log and monitor sends            | Decorator                 | Wrap sender with logging layer       |
+| Retry on failure                 | Chain of Responsibility   | Try backup sender                    |
+| Send multiple notifications      | Composite / Observer      | Broadcast to multiple channels       |
+| Ensure one NotificationManager   | Singleton                 | Central control                      |
+
+----------------------------------------------------------------------
+How Do Engineers Decide Which Pattern?
+
+Step-by-step thought process:
+
+1. What is changing?
+   - Is the behavior changing? Use Strategy.
+   - Is the construction logic changing? Use Factory or Builder.
+
+2. What must remain stable?
+   - Define a solid interface or abstract class.
+
+3. Do I need to plug/extend behavior without touching core logic?
+   - Use Decorator or Observer.
+
+4. Will I add more types in future without rewriting main logic?
+   - Use Factory or Abstract Factory.
+
+5. Will objects coordinate or depend on each other?
+   - Use Mediator, Observer, or Chain.
+
+----------------------------------------------------------------------
+Analogy: Design Patterns Are Like Tools
+
+- You don't always start by picking a pattern.
+- You understand the problem, then use the best tool to solve it.
+
+You solve problems. Patterns just help you do it better.
+
+----------------------------------------------------------------------
+Final Example: Uber Ride Booking System
+
+| Component                   | Pattern Used            | Why?                                   |
+|----------------------------|-------------------------|----------------------------------------|
+| Booking Creation           | Factory                 | Create Pool, Premium, or XL ride       |
+| Payment Options            | Strategy                | Pay via card, wallet, UPI              |
+| Surge Pricing              | Decorator               | Add surge on base fare dynamically     |
+| Notifications              | Observer                | Send ride updates to email, mobile     |
+| Retry Payment              | Chain of Responsibility | Try next method if one fails           |
+| Singleton Managers         | Singleton               | Global rideManager, driverManager      |
+
+----------------------------------------------------------------------
+TL;DR
+
+Big systems are made by breaking problems into small parts — each solved using a design pattern.
+You don’t start with a pattern — you observe the changing parts, and choose the right pattern to handle them.

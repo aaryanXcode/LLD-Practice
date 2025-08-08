@@ -1,0 +1,130 @@
+🧩 Beginner Problems
+1. Burger Shop (what you’ve done)
+
+    Create different types of burgers using a BurgerFactory.
+
+    Extend it to add VeganBurger, KidsBurger, etc.
+
+    ✅ You’ve already done the core — now try extending.
+
+2. Notification Sender
+
+Problem:
+Create a system that can send notifications via:
+
+    Email
+
+    SMS
+
+    Push Notification
+
+Design:
+
+    Interface: Notification
+
+    Subclasses: EmailNotification, SMSNotification, PushNotification
+
+    NotificationFactory::createNotification(string type)
+
+3. Shape Drawer
+
+Problem:
+Given a shape name ("circle", "square", "triangle"), return a shape object that can draw itself.
+
+Design:
+
+    Interface: Shape { draw() }
+
+    Subclasses: Circle, Square, Triangle
+
+    ShapeFactory::createShape(string type)
+
+🛠 Intermediate Problems
+4. Vehicle Manufacturing System
+
+Problem:
+Build a factory that produces different vehicles:
+
+    Car
+
+    Bike
+
+    Truck
+
+Design:
+
+    Interface: Vehicle { drive() }
+
+    Factory: VehicleFactory::createVehicle(string type)
+
+Then extend it:
+
+    Add LuxuryCar, ElectricBike, DeliveryTruck.
+
+5. OS Widget Factory (Cross-platform UI)
+
+Problem:
+You want to render UI components (Button, Checkbox, TextField) for different platforms:
+
+    Windows
+
+    Mac
+
+    Linux
+
+Design:
+
+    Abstract UI Elements: Button, Checkbox
+
+    Concrete Versions: WindowsButton, MacButton, etc.
+
+    Factory: UIFactory::createButton("windows")
+
+This leads to Abstract Factory, a superset of Factory Pattern.
+🧠 Advanced / Design Pattern Mix
+6. Payment Gateway Integration
+
+Problem:
+Build a payment processing system that can handle:
+
+    PayPal
+
+    Stripe
+
+    Razorpay
+
+Design:
+
+    Interface: PaymentGateway { processPayment(amount) }
+
+    Factory: PaymentFactory::getGateway("paypal")
+
+Add runtime config-based gateway selection.
+7. Document Parser
+
+Problem:
+Parse different file formats:
+
+    JSON
+
+    XML
+
+    CSV
+
+Design:
+
+    Interface: Parser { parse(string content) }
+
+    Factory: ParserFactory::getParser("json")
+
+Inject into a FileProcessor class.
+🧪 Want Real Coding Practice?
+
+If you're interested in solving these as actual coding problems, I can:
+
+    Help walk you through 1–2 problems step-by-step,
+
+    Give you input/output examples,
+
+    Or simulate interview-style problem solving.
+

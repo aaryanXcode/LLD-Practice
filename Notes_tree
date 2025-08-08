@@ -1,0 +1,63 @@
+Design Patterns 🌐
+│
+├── 1. Creational Patterns 🛠️ (Object Creation)
+│   ├── Singleton
+│   │   └─ Ensure one instance (e.g., RideManager in Uber)
+│   ├── Factory Method
+│   │   └─ Create object based on input (e.g., NotificationFactory)
+│   ├── Abstract Factory
+│   │   └─ Create related objects (e.g., UI ThemeFactory)
+│   ├── Builder
+│   │   └─ Build complex objects step by step (e.g., PizzaBuilder)
+│   └── Prototype
+│       └─ Clone object (e.g., Copy game character)
+
+├── 2. Structural Patterns 🧱 (Class/Object Composition)
+│   ├── Adapter
+│   │   └─ Convert one interface to another (e.g., StripeAdapter)
+│   ├── Decorator
+│   │   └─ Add behavior dynamically (e.g., LoggingSender)
+│   ├── Proxy
+│   │   └─ Control access or add logic (e.g., Lazy image loading)
+│   ├── Composite
+│   │   └─ Treat group of objects as one (e.g., NotificationGroup)
+│   ├── Facade
+│   │   └─ Simplify subsystem access (e.g., RideFacade)
+│   ├── Bridge
+│   │   └─ Decouple abstraction from implementation (e.g., UI controls)
+│   └── Flyweight
+│       └─ Share large object data (e.g., text characters)
+
+├── 3. Behavioral Patterns 🧠 (Runtime Behavior)
+│   ├── Strategy
+│   │   └─ Change behavior at runtime (e.g., NotificationSender)
+│   ├── Observer
+│   │   └─ Notify multiple listeners (e.g., Ride status update)
+│   ├── Command
+│   │   └─ Encapsulate action (e.g., Button → ActionCommand)
+│   ├── State
+│   │   └─ Change behavior by state (e.g., RideStateMachine)
+│   ├── Chain of Responsibility
+│   │   └─ Pass request in chain (e.g., Payment fallback)
+│   ├── Mediator
+│   │   └─ Central communication (e.g., ChatRoom)
+│   ├── Template Method
+│   │   └─ Algorithm skeleton (e.g., Report Generation)
+│   ├── Iterator
+│   │   └─ Traverse collections (e.g., JobQueue iterator)
+│   ├── Visitor
+│   │   └─ Add operations to structure (e.g., Tax calculator)
+│   ├── Memento
+│   │   └─ Save/restore state (e.g., Undo/Redo)
+│   └── Interpreter
+│       └─ Grammar/Expression evaluator (e.g., DSL parser)
+
+└── 4. Real System Use Cases 🚀
+    ├── Uber System
+    │   └─ Factory, Strategy, Observer, Decorator
+    ├── Netflix Player
+    │   └─ State, Singleton, Observer, Command
+    ├── Notification Engine
+    │   └─ Factory, Strategy, Composite, Decorator
+    └── E-commerce Checkout
+        └─ Builder, Strategy, Chain of Responsibility, Observer

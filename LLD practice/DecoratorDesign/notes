@@ -1,0 +1,191 @@
+ 
+*    Decorator is a structural design pattern that lets you attach,
+*   new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+*    “Wrapper” is the alternative nickname for the Decorator pattern that clearly expresses the main idea of the pattern. 
+*    A wrapper is an object that can be linked with some target object. 
+
+✅ Use Decorator Pattern when:
+
+    You want to add responsibilities dynamically at runtime.
+
+        ✅ Example: A user adds extra toppings on a pizza one by one.
+
+        ❌ Don't subclass PizzaWithCheese, PizzaWithCheeseAndOlives, etc.
+
+    You need combinations of features.
+
+        Features should be optional, reusable, and combinable.
+
+    You want to follow the Open/Closed Principle.
+
+        You want to extend functionality without modifying existing code.
+
+    You want to avoid subclass explosion.
+
+        You might have 5 features → 2⁵ = 32 combinations! Don’t create 32 classes.
+
+*********************************************************************************************************************************************************************
+Imagine you're building a Coffee Shop App.
+You sell:
+
+    Basic Coffee
+
+    Coffee + Milk
+
+    Coffee + Sugar
+
+    Coffee + Milk + Sugar
+
+Now, should you create separate classes like:
+
+    Coffee
+
+    CoffeeWithMilk
+
+    CoffeeWithSugar
+
+    CoffeeWithMilkAndSugar
+
+❌ That would create a class explosion! Too many combinations.
+
+✅ Instead, we build:
+
+    A base class Beverage
+
+    A core type Coffee
+
+    Then wrap it with decorators like Milk, Sugar to add features at runtime
+
+🎯 Decorator Uses 2 Relationships:
+✅ 1. IS-A (Milk IS-A Beverage)
+
+So that you can treat a decorator like the original object.
+✅ 2. HAS-A (Milk HAS-A Beverage)
+
+So the decorator can wrap the original object and extend its behavior.
+*********************************************************************************************************************************************************************
+
+
+**Decorator Design Pattern - Revision Notes**
+
+---
+
+### 💡 What Problem Does It Solve?
+
+When you want to **add responsibilities to a    n object dynamically**, without creating multiple subclasses for every combination of features.
+
+**Example**: Coffee shop app:
+
+* Basic Coffee
+* Coffee + Milk
+* Coffee + Milk + Sugar
+* ...
+
+Instead of creating separate classes for each combination, use **decorators** to dynamically add behavior.
+
+---
+
+### ✅ Decorator Pattern Uses:
+
+#### 1. IS-A (Inheritance)
+
+* Decorators inherit from the same base class as the object they're decorating.
+* Example: `Milk IS-A Beverage`, `Sugar IS-A Beverage`
+
+#### 2. HAS-A (Composition)
+
+* Each decorator **wraps** a `Beverage` object and adds to it.
+* Example: `Milk HAS-A Beverage`, `Sugar HAS-A Beverage`
+
+---
+
+### ✅ Structure
+
+#### Base Class / Interface:
+
+```cpp
+class Beverage {
+public:
+    virtual string description() = 0;
+    virtual double cost() = 0;
+    virtual ~Beverage() {}
+};
+```
+
+#### Concrete Component:
+
+```cpp
+class Coffee : public Beverage {
+public:
+    string description() override { return "Coffee"; }
+    double cost() override { return 5.0; }
+};
+```
+
+#### Abstract Decorator:
+
+```cpp
+class BeverageDecorator : public Beverage {
+protected:
+    Beverage* beverage;
+public:
+    BeverageDecorator(Beverage* b) : beverage(b) {}
+};
+```
+
+#### Concrete Decorators:
+
+```cpp
+class Milk : public BeverageDecorator {
+public:
+    Milk(Beverage* b) : BeverageDecorator(b) {}
+    string description() override { return beverage->description() + ", Milk"; }
+    double cost() override { return beverage->cost() + 1.5; }
+};
+
+class Sugar : public BeverageDecorator {
+public:
+    Sugar(Beverage* b) : BeverageDecorator(b) {}
+    string description() override { return beverage->description() + ", Sugar"; }
+    double cost() override { return beverage->cost() + 0.5; }
+};
+```
+
+#### Usage:
+
+```cpp
+int main() {
+    Beverage* b = new Coffee();
+    b = new Milk(b);
+    b = new Sugar(b);
+
+    cout << b->description() << endl; // Coffee, Milk, Sugar
+    cout << b->cost() << endl;        // 5.0 + 1.5 + 0.5 = 7.0
+
+    delete b;
+}
+```
+
+---
+
+### 📊 Summary Table
+
+| Class             | IS-A     | HAS-A    |
+| ----------------- | -------- | -------- |
+| Coffee            | Beverage | ❌        |
+| Milk, Sugar       | Beverage | Beverage |
+| BeverageDecorator | Beverage | Beverage |
+
+---
+
+### 🎓 Decorator Pattern Helps:
+
+* Avoid class explosion.
+* Add features at **runtime**.
+* Extend behavior without touching original code (**Open/Closed Principle**).
+
+---
+
+Ready to practice or want a UML text diagram?
+
+Note : first Create a decorator class and a base class which we are going to decorate( you can take any real world examples, like decorating bride, decorating cake)

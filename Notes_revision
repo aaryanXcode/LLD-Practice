@@ -1,0 +1,57 @@
+Design Patterns Overview – Quick Revision Tree
+==============================================
+
+1. Creational Patterns 🛠️ – Focus on object creation
+-----------------------------------------------------
+| Pattern       | When to Use                                           | Example Usage (Real System)                  |
+|---------------|--------------------------------------------------------|-----------------------------------------------|
+| Singleton     | Ensure only one instance of a class exists             | ConfigManager, DBConnection, RideManager (Uber) |
+| Factory       | Create objects without specifying exact class          | NotificationFactory, RideFactory (Uber)       |
+| AbstractFactory| Create related objects without specifying classes     | UI components, Theme kits                     |
+| Builder       | Build complex objects step-by-step                     | PizzaBuilder, VehicleBuilder                  |
+| Prototype     | Clone existing objects without coupling to class       | Game character clone, Graphic editor shapes   |
+
+2. Structural Patterns 🧱 – Focus on object composition
+-------------------------------------------------------
+| Pattern       | When to Use                                           | Example Usage                                 |
+|---------------|--------------------------------------------------------|-----------------------------------------------|
+| Adapter       | Convert one interface into another                    | PaymentGatewayAdapter (Stripe → PayPal)       |
+| Decorator     | Add responsibilities dynamically                      | Add surge price, LoggingSender                |
+| Proxy         | Control access or add extra logic                     | Network proxy, AccessControlProxy             |
+| Composite     | Treat groups of objects as a single object            | UI tree, NotificationGroup                    |
+| Facade        | Simplify complex subsystem                            | RideFacade (maps, pricing, availability)      |
+| Bridge        | Separate abstraction from implementation              | RemoteControl ↔ Devices                        |
+| Flyweight     | Reduce memory usage for large object sets             | Text rendering, Map markers                   |
+
+3. Behavioral Patterns 🧠 – Focus on communication & behavior
+-------------------------------------------------------------
+| Pattern            | When to Use                                           | Example Usage                               |
+|--------------------|--------------------------------------------------------|---------------------------------------------|
+| Strategy           | Change behavior at runtime                            | NotificationSender, PaymentMethodStrategy   |
+| Observer           | One-to-many dependency                                | Ride status update → Email/SMS push         |
+| Command            | Encapsulate a request as an object                    | UI button actions, Undo/Redo in editor      |
+| State              | Change object behavior by changing its state          | RideStatus (Searching, Matched, Arrived)    |
+| Chain of Responsibility | Pass request along a chain until handled        | Payment retry chain, Middleware pipeline    |
+| Mediator           | Reduce direct communication between components        | ChatRoom, FlightControlTower                |
+| Template Method    | Define skeleton of algorithm with steps overridden    | Report generation steps                     |
+| Iterator           | Access items in a collection without exposing structure| NotificationQueue, JobQueue iterator        |
+| Visitor            | Add operations to object structure without modifying  | Tax calculation, Export different formats   |
+| Memento            | Capture and restore object state                      | Undo/Redo snapshot in games or editors      |
+| Interpreter        | Evaluate language grammar or expressions              | Expression evaluator, Scripting engine      |
+
+4. Real System Examples 🚀
+--------------------------
+| System          | Patterns Used                            | Purpose                                      |
+|-----------------|-------------------------------------------|----------------------------------------------|
+| Uber            | Factory, Strategy, Observer, Decorator    | Dynamic pricing, ride booking, notifications |
+| Netflix Player  | Singleton, State, Observer, Command       | Play state, buffering, subtitles             |
+| NotificationEngine| Factory, Strategy, Decorator, Composite | Sender variation, logging, bulk notifications|
+| E-commerce Cart | Builder, Strategy, Observer, Chain        | Checkout steps, payment retries, cart updates|
+| Game Editor     | Prototype, Memento, Command               | Clone characters, undo/redo, save/load       |
+
+TL;DR 🎯
+=======
+- Use **Creational** when object creation is complex or varies.
+- Use **Structural** when you want to change class composition.
+- Use **Behavioral** when you want to alter communication or runtime behavior.
+- Big systems combine 4–6 patterns in different layers.
