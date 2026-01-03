@@ -1,1 +1,73 @@
 .vscode/
+# Compiled Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+*.la
+
+# Executables
+*.exe
+*.out
+*.app
+parking
+a.out
+
+# VS Code specific
+.vscode/
+*.code-workspace
+
+# Build directories
+build/
+bin/
+obj/
+out/
+debug/
+release/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Preprocessed Files
+*.i
+*.ii
+*.s
+*.S
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+*.idb
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE files
+*.cbp
+*.depend
+*.layout
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Core dumps
+core
+core.*

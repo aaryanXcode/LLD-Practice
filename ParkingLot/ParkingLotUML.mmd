@@ -1,0 +1,67 @@
+classDiagram
+    class Color {
+        <<enumeration>>
+        YELLOW
+        WHITE
+        BLACK
+        RED
+    }
+    
+    class Car {
+        -string registrationNumber
+        -Color color
+        +setColor(Color)
+        +setRegistrationNumber(string)
+        +getColor() Color
+        +getRegistrationNumber() string
+    }
+    
+    class ParkingSlot {
+        -int slotId
+        -bool isOccupied
+        +getSlotId() int
+        +setSlotId(int)
+        +getIsOccupied() bool
+        +setIsOccupied(bool)
+        +operator>(ParkingSlot) bool
+    }
+    
+    class Ticket {
+        -int ticketId
+        -string registrationNumber
+        -string date
+        -int price
+        -int duration
+        +getTicketId() int
+        +setTicketId(int)
+        +getRegistrationNumber() string
+        +setRegistrationNumber(string)
+        +getDate() string
+        +setDate(string)
+        +getPrice() int
+        +setPrice(int)
+        +getDuration() int
+        +setDuration(int)
+    }
+    
+    class ParkingLot {
+        -priority_queue~ParkingSlot~ availableSlots
+        -unordered_map~string, ParkingSlot*~ carToSlotMap
+        -unordered_map~Color, set~ParkingSlot*~~ slotsByColor
+        -unordered_map~Color, list~Ticket*~~ ticketsByColor
+        -unordered_map~string, Ticket*~ activeTickets
+        -int ticketCounter
+        +ParkingLot()
+        +park(Car*) Ticket*
+        +unPark(Ticket*)
+        +getParkingSlotByRegistrationNumber(string) ParkingSlot*
+        +getParkingSlotsByColor(Color) list~ParkingSlot*~
+        +getTicketsByColor(Color) list~Ticket*~
+    }
+    
+    Car --> Color : uses
+    ParkingLot --> Car : manages
+    ParkingLot --> ParkingSlot : manages
+    ParkingLot --> Ticket : creates
+    ParkingLot ..> Color : uses
+    Ticket --> Car : references via registrationNumber
