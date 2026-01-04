@@ -1,0 +1,112 @@
+classDiagram
+
+%% ================= ENUMS =================
+class Direction {
+  <<enumeration>>
+  UP
+  DOWN
+  IDLE
+}
+
+class ButtonType {
+  <<enumeration>>
+  UP
+  DOWN
+  FLOOR
+  OPEN
+  CLOSE
+  ALARM
+}
+
+class DoorState {
+  <<enumeration>>
+  OPEN
+  CLOSED
+}
+
+class ElevatorStatus {
+  <<enumeration>>
+  MOVING
+  STOPPED
+}
+
+%% ================= CORE CLASSES =================
+
+class Button {
+  - ButtonType type
+  - bool pressed
+  + press()
+  + getType()
+  + isPressed()
+}
+
+class Request {
+  + int floor
+  + Direction direction
+}
+
+class Display {
+  - int currentFloor
+  - Direction direction
+  + update(floor, direction)
+  + show()
+}
+
+class Door {
+  - DoorState state
+  + open()
+  + close()
+}
+
+class Panel {
+  - List~Button~ buttons
+  + pressFloorButton(floor) Request
+}
+
+class Elevator {
+  - int currentFloor
+  - Direction direction
+  - ElevatorStatus status
+  - Display display
+  - Door door
+  - Panel panel
+  + moveUp(targetFloor)
+  + moveDown(targetFloor)
+  + stop()
+  + getCurrentFloor()
+}
+
+%% ================= SCHEDULER =================
+
+class IScheduler {
+  <<interface>>
+  + getNextRequest(requests, elevator) Request
+}
+
+class FCFScheduler {
+  + getNextRequest(requests, elevator) Request
+}
+
+%% ================= CONTROLLER =================
+
+class ElevatorController {
+  - IScheduler scheduler
+  - List~Request~ pendingRequests
+  - Elevator elevator
+  + addRequest(request)
+  + processNextRequest()
+}
+
+%% ================= RELATIONSHIPS =================
+
+Panel *-- Button
+Elevator *-- Door
+Elevator *-- Display
+Elevator *-- Panel
+
+Button ..> ElevatorController : creates request
+ElevatorController --> Request : manages
+ElevatorController --> Elevator : commands
+ElevatorController --> IScheduler : uses
+
+IScheduler <|-- FCFScheduler
