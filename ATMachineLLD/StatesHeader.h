@@ -1,0 +1,8 @@
+#include "EjectCardState.h"
+#include "NoCashState.h"
+#include "IdleState.h"
+#include "CardInsertedState.h"
+#include "MenuState.h"
+#include "WithDrawState.h"
+#include "PinInsertState.h"
+#include "BalanceCheckState.h"

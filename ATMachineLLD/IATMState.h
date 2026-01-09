@@ -1,21 +1,19 @@
-#ifndef ATM_STATE.h
-#define ATM_STATE.h
+#ifndef IATMSTATE_H
+#define IATMSTATE_H
 
-class IATMState{
-    public:
-        virtual void IdleState(ATM* machine, int balance) = 0;
-        virtual void NoCashState(ATM* machine) = 0;
-        virtual void WithDrawState(ATM* machine, int amount) = 0;
-        virtual void CardInsertedState(ATM* machine) = 0;
-        virtual void PinInsertState(ATM* machine, int pin) = 0;
-        virtual void MenuState(ATM* machine);
-        virtual void WithDrawState(ATM* machine, int amount) = 0;
-        virtual void BalanceCheckState(ATM* machine) = 0;
-        virtual void EjectCardState(ATM* machine) = 0;
-        virtual ~IATMState()=0;
+class ATM;
 
+class IATMState {
+public:
+    virtual void insertCard(ATM* atm) = 0;
+    virtual void enterPin(ATM* atm, int pin) = 0;
+    virtual void selectOption(ATM* atm, int option) = 0;
+    virtual void withdrawAmount(ATM* atm, int amount) = 0;
+    virtual void checkBalance(ATM* atm) = 0;
+    virtual void ejectCard(ATM* atm) = 0;
+    virtual void balanceCheckState(ATM* atm) = 0;
+    virtual ~IATMState() = default;
+};
 
-
-}
 
 #endif
